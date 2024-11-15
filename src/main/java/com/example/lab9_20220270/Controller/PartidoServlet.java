@@ -58,11 +58,13 @@ public class PartidoServlet extends HttpServlet {
                 boolean partidoDuplicado = false;
 
                 for (Partido p : partidos) {
+                    //Comentario: Consideré que para que un partido esté duplicado por lo menos debía tener la mismas
+                    //selección local, selección visitante y número de jornada que otro partido. Aún si la fecha o el
+                    //árbitro fuesen distintos, se considera partido duplicado puesto que en una misma jornada no puede
+                    //ocurrir el mismo partido (con el mismo local y el mismo visitante) más de una vez.
                     if (p.getNumeroJornada() == numeroJornada &&
-                            p.getFecha().equals(fecha) &&
                             p.getSeleccionLocal().getIdSeleccion() == seleccionLocal &&
-                            p.getSeleccionVisitante().getIdSeleccion() == seleccionVisitante &&
-                            p.getArbitro().getIdArbitro() == arbitro) {
+                            p.getSeleccionVisitante().getIdSeleccion() == seleccionVisitante) {
                         partidoDuplicado = true;
                         break;
                     }
